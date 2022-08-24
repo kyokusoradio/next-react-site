@@ -2,8 +2,8 @@ import Logo from "components/logo"
 
 export default function Footer() {
   return (
-      <Footer>
+      <footer>
           <Logo />
-      </Footer>
+      </footer>
   )
 }
