@@ -1,5 +1,7 @@
 import Container from "components/container"
 import { getPostBySlug } from "lib/api"
+import { extractText } from "lib/extract-text"
+import Meta from "components/meta"
 import PostHeader from "components/post-header"
 import PostBody from "components/post-body"
 import { TwoColumn, TwoColumnMain, TwoColumnSidebar } from "components/two-column"
@@ -16,6 +18,13 @@ export default function Schedule({
 }) {
   return (
     <Container>
+      <Meta
+        pageTitle={title}
+        pageDesc={description}
+        pageImg={eyecatch.url}
+        pageImgW={eyecatch.width}
+        pageImgH={eyecatch.height}
+      />
       <article>
         <PostHeader title={title} subtitle="Blog Article" publish={publish} /> 
         <figure>
@@ -48,6 +57,7 @@ export default function Schedule({
 export async function getStaticProps() {
   const slug = 'schedule'
   const post = await getPostBySlug(slug)
+  const description = extractText(post.content)
 
   return {
     props: {
@@ -56,6 +66,7 @@ export async function getStaticProps() {
       content: post.content,
       eyecatch: post.eyecatch,
       categories: post.categories,
+      description: description,
     },
   }
 }
