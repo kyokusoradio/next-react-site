@@ -18,6 +18,7 @@ export default function Post({
   content,
   eyecatch,
   categories,
+  description
 }) {
   return (
     <Container>
@@ -68,8 +69,8 @@ export async function getStaticPaths() {
   }
 }
 
-export async function getStaticProps() {
-  const slug = 'schedule'
+export async function getStaticProps(context) {
+  const slug = context.params.slug
   const post = await getPostBySlug(slug)
   const description = extractText(post.content)
   const eyecatch = post.eyecatch ?? eyecatchLocal
