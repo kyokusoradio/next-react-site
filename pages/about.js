@@ -14,7 +14,7 @@ export default function About() {
         <Hero title="About" subtitle="About dvelopment activities" /> 
 
       <figure>
-        <Image src={eyecatch} alt="" layout="responsive" sizes="(min-width: 1152px) 1152px, 100vw" priority placeholder="blur"/>
+        <Image src={eyecatch} alt="" layout="responsive" sizes="(min-width: 1152px) 1152px, 100vw" priority plaiceholder="blur"/>
       </figure>
       
         <TwoColumn>

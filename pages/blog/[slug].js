@@ -5,9 +5,10 @@ import { prevNextPost } from "lib/prev-next-post"
 import Meta from "components/meta"
 import PostHeader from "components/post-header"
 import PostBody from "components/post-body"
-import { TwoColumn, TwoColumnMain, TwoColumnSidebar } from "components/two-column"
+import { TwoColumn, TwoColumnMain, TwoColumnSidebar, } from "components/two-column"
 import ConvertBody from "components/convert-body"
 import PostCategories from "components/post-categories"
+import Pagination from "components/pagination"
 import Image from "next/image"
 import { getPlaiceholder } from "plaiceholder"
 import { eyecatchLocal } from "lib/constants"
@@ -35,14 +36,16 @@ export default function Post({
       <article>
         <PostHeader title={title} subtitle="Blog Article" publish={publish} /> 
         <figure>
-          <Image src={eyecatch.url}
+          <Image 
+            key={eyecatch.url}
+            src={eyecatch.url}
             alt=""
             layout="responsive"
             width={eyecatch.width}
             height={eyecatch.height}
             sizes="(min-width: 1152px) 1152px, 100vw"
             priority
-            placeholder="blur"
+            plaiceholder="blur"
             blurDataURL={eyecatch.blurDataURL}
           />
         </figure>
@@ -57,15 +60,14 @@ export default function Post({
             <PostCategories categories={categories} />
           </TwoColumnSidebar>
         </TwoColumn>
-        
-        <div>
-          {prevPost.title} {prevPost.slug}
-        </div>
-        <div>
-          {nextPost.title} {nextPost.slug}
-        </div>
-        
 
+        <Pagination 
+          prevText={prevPost.title}
+          prevUrl={`/blog/${prevPost.slug}`}
+          nextText={nextPost.title}
+          nextUrl={`/blog/${nextPost.slug}`}
+        />
+        
       </article>
     </Container>
   )
