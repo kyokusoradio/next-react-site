@@ -19,9 +19,9 @@ export default function Post({
   content,
   eyecatch,
   categories,
-  descriptio,
+  description,
   prevPost,
-  nextPost,n
+  nextPost,
 }) {
   return (
     <Container>
@@ -59,7 +59,7 @@ export default function Post({
         </TwoColumn>
         
         <div>
-          {prevPost.title} {preost.lug}
+          {prevPost.title} {prevPost.slug}
         </div>
         <div>
           {nextPost.title} {nextPost.slug}
@@ -99,7 +99,7 @@ export async function getStaticProps(context) {
       eyecatch: eyecatch,
       categories: post.categories,
       description: description,
-      prevPost: prePost,
+      prevPost: prevPost,
       nextPost: nextPost,
       
     },
